@@ -1,0 +1,19 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>コマンド実行結果</title>
+    </head>
+    <body>
+        <h3>コマンド実行結果</h3>
+	        <tr th:each="entry : ${party}">
+	            <td th:text="${entry.value.name}+'は'+${entry.value.method}"></td><br>
+			</tr>
+	        <th>敵HP：</th>
+    	        <td width="50" th:text="${enemy.hp}" ></td><br>
+        <form th:action="@{/command_2}" th:object="${player}">
+           	<input type="hidden" name="no" th:value=1>
+			<input type="submit" value="再度コマンドを入力して下さい" />
+   	    </form>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>コマンド実行結果</title>
+    </head>
+    <body>
+        <h3>コマンド実行結果</h3>
+	        <tr th:each="entry : ${party}">
+	            <td th:text="${entry.value.name}+'は'+${entry.value.method}"></td><br>
+			</tr>
+	        <th>敵HP：</th>
+    	        <td width="50" th:text="${enemy.hp}" ></td><br>
+        <h3>敵HPが0になりましたのでコマンド実行を終了します。</h3>
+    </body>
+</html>

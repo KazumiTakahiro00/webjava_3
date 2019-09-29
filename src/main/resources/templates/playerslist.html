@@ -1,0 +1,51 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>プレイヤー一覧</title>
+	</head>
+	<body>
+		<h3>プレイヤー一覧</h3>
+		<form action="#" th:action="@{/playerslist}" th:object="${PlayersListForm}" method="post">
+
+            <th>パーティ人数：</th>
+                <td width="50" th:text="${players.size()}" ></td>
+
+			<table border="1">
+				<tr>
+					<th>プレイヤーID</th>
+					<th>名前</th>
+					<th>職業</th><br>
+				</tr>
+
+				<tr th:each="player, stat : ${players}">
+					<td th:text="${player.no}"></td>
+						<input type="hidden" th:name="|playersList[${stat.index}].no|" th:value="${player.no}" />
+					<td>
+						<input type="text" th:name="|playersList[${stat.index}].name|" th:value="${player.name}" />
+					</td>
+					<td>
+						<input type="text" th:name="|playersList[${stat.index}].profession|" th:value="${player.profession}" />
+					</td>
+				</tr>
+			</table>
+			<input type="submit" value="更新" class="btn" /><br>
+		</form>
+
+		<form action="#" th:action="@{/addplayers}" method="post">
+			<h3>プレイヤーを新規追加する場合は下記情報を入力して登録を押下して下さい</h3>
+                <th>名前：</th>
+                <input type="text" name="name"><br>
+                <th>職業：</th>
+                <input type="radio" name="profession" value="戦士" checked>戦士
+				<input type="radio" name="profession" value="魔法使い">魔法使い
+				<input type="radio" name="profession" value="武闘家">武闘家<br>
+			<input type="submit" value="登録" class="btn" />
+		</form>
+
+        <form th:action="@{/command}" method="get" th:object="${PlayersListForm}" >
+			<h3>プレイヤー作成完了後コマンド入力を押下して下さい：</h3>
+			<button>コマンド入力</button>
+       	</form>
+	</body>
+</html>
